@@ -1,0 +1,22 @@
+{
+  "name": "chrome-extension-cs",
+  "version": "1.0.0",
+  "description": "codesmith hackathon extension",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelma7/chrome-extension-cs.git"
+  },
+  "author": "Ting L & Michael M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelma7/chrome-extension-cs/issues"
+  },
+  "homepage": "https://github.com/michaelma7/chrome-extension-cs#readme",
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
+}
