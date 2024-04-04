@@ -6,11 +6,12 @@ const screenController = (function () {
   //add 'extension' button
   const extensionButton = document.createElement('button');
   extensionButton.classList.add('extension-on');
-  extensionButton.innerText = 'Help'
+  extensionButton.innerText = 'Help!'
+  extensionButton.style.cssText = 'border: none; outline: none; padding: 5px 10px; background-color: red; color: white; border-radius: 5px;'
   body.appendChild(extensionButton);
-  extensionButton.addEventListener('click', (e) => {
-    e.preventDefault();
+  extensionButton.addEventListener('click', () => {
     overlay();
+    setTimeout(() => {redirectButtonController.buttonCreation()}, 4000);
   });
 
   //add css to make it cover whole screen in black
@@ -18,7 +19,7 @@ const screenController = (function () {
     const body = document.querySelector('body');
     //create overlay div
     const overlay = document.createElement('div');
-    //overlay.classList.add('overlay');
+    overlay.classList.add('overlay');
     overlay.style.cssText = 'background-color: white; position: fixed; left: 0; right: 0; top: 0; bottom: 0; width: 100vw; height: 100vh; z-index: 3; opacity: 1;';
     //create Google Nav Bar
     const navbar = document.createElement('nav');
@@ -46,7 +47,7 @@ const screenController = (function () {
     //create google main
     const main = document.createElement('div');
     //main.classList.add('main');
-    main.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Logo"/>';
+    main.innerHTML = '<img class="123456" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Logo"/>';
     main.style.cssText = 'display:flex; background-color: white; flex-direction: column; align-items: center; gap: 25px; margin-top: 200px;'
     const searchBar = document.createElement('div');
     //searchBar.classList.add('search-bar');
@@ -80,7 +81,6 @@ const screenController = (function () {
     overlay.appendChild(footer);
     body.appendChild(overlay);
   }
-  return {overlay};
   
 })();
 
@@ -92,29 +92,37 @@ const screenController = (function () {
 //makes redirect button
 const redirectButtonController = (function() {
   //DOM Cache
-  const overlay = document.querySelector('.overlay');
-  const body = document.querySelector('body');
-  const redirectButton = document.querySelector('.btn-click');
+  //const body = document.querySelector('body');
 
-  const open = document.createElement('button');
-  open.setAttribute('id', 'openGoogle');
-  open.innerHTML = '<a href="https://www.google.com/"></a>';
-  //
-  function takeMeBack() {
-    document.querySelector(".overlay").style.display = "none";
-  } 
-  function openGoogle(){
-    document.getElementById("openGoogle").href = 'https://www.google.com/'
+  //creates the buttons -> my section my eventlistener will invoke the creation function 
+  function buttonCreation() {
+    //caching important DOM locations
+    const overlay = document.querySelector('.overlay');
+    //make the buttons -> style it appropriately so it has the link built in
+    // open button
+    const returnButton = document.createElement('button');
+    returnButton.innerText = 'Take me back';
+    returnButton.style.cssText = 'position: fixed; left: 30%; top: 70%; border: none; outline: none; padding: 10px 20px; background-color: #2bc22b; color: white; border-radius: 10px;'
+    returnButton.addEventListener('click', () => {
+      takeMeBack();
+    });
+    overlay.appendChild(returnButton);
+
+    const open = document.createElement('button');
+    open.setAttribute('id', 'openGoogle');
+    open.innerHTML = '<a href="https://www.codesmith.io/">Another Second</a>';
+    open.style.cssText = 'position: fixed; left: 70%; top: 70%; border: none; outline: none; padding: 10px 20px; color:white; border-radius: 10px; background-color: red'
+    overlay.appendChild(open)
+    
+    //style buttons so it looks not the worst
+    //add eventlisteners to the button
+    //append it to the document
   }
-  // const openGoogleButton = document.querySelector('.openGoogleButton');
-  // document.getElementById("openGoogleButton").addEventListener("click", openGoogle);
-  // const takeMeBackButton = document.querySelector('.takeMeBackButton');
-  // document.getElementById("takeMeBackButton").addEventListener("click", takeMeBack);
+  
+  function takeMeBack() {
+    document.querySelector(".overlay").remove();
+  } 
 
-})();
-
-//gets url information
-const urlScrapper = (function() {
-
+  return {buttonCreation}
 })();
 
